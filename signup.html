@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation - Easy Tutorials YouTube Channel</title>
+    <link rel="stylesheet" href="stylefprm.css">
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+   
+</head>
+<body>
+  <div class="container">
+    <form>
+      <i class="fas fa-paper-plane"></i>
+
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your name"id="contact-name" onkeyup="validatename()">
+        <span id="name-error"></span>
+      </div>
+
+      <div class="input-group">
+        <label>Phone No.</label>
+        <input type="tel" placeholder="123 456 7890" id="contact-phone" onkeyup="validatephone()">
+        <span id="phone-error"></span>
+      </div>
+
+      <div class="input-group">
+        <label>Email Id</label>
+        <input type="email" placeholder="Enter Email" id="contact-email" onkeyup="validateemail()">
+        <span id="email-error"></span>
+      </div>   
+      <div class="input-group">
+        <label>password</label>
+        <input type="text" placeholder="Enter password" id="pass" onkeyup="validatepassword(this.value);validatenew(this.value)">
+        
+        <span id="password-error"></span>
+        <div class="myDIV">Instructions</div>
+<div class="hide">Minimum 8 characters, at least one uppercase, and one lower case, must contain at least one number</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+      </span>
+      <br>
+      <br>
+      <br>    
+</div>   
+    <button>Sign Up</button>
+    <span id="submit-error"></span>
+    <script src="form.js" > </script>
+  </form>
+  <div style = "position:absolute; left:8px; top:3px; width: 200%;  background-color:rgb(255, 255, 0);">
+    <a href="index.html">
+    <button class="button button1">Home</button>
+  </a>
+
+  <span id="msg"></span> 
+  <script>
+    
+    let password=document.getElementById("pass");
+    console.log(password);
+
+    function validatenew(password) {
+                
+                // Do not show anything when the length of password is zero.
+                if (password.length === 0) {
+                    document.getElementById("msg").innerHTML = "";
+                    return;
+                }
+                // Create an array and push all possible values that you want in password
+                var matchedCase = new Array();
+                matchedCase.push("[$@$!%*#?&]"); // Special Charector
+                matchedCase.push("[A-Z]");      // Uppercase Alpabates
+                matchedCase.push("[0-9]");      // Numbers
+                matchedCase.push("[a-z]");     // Lowercase Alphabates
+            
+                // Check the conditions
+                var ctr = 0;
+                for (var i = 0; i < matchedCase.length; i++) {
+                    if (new RegExp(matchedCase[i]).test(password)) {
+                        ctr++;
+                    }
+                }
+                // Display it
+                var color = "";
+                var strength = "";
+                switch (ctr) {
+                    case 0:
+                    case 1:
+                    case 2:
+                        strength = "password strength: Very Weak";
+                        color = "red";
+                        break;
+                    case 3:
+                        strength = "password strength: Medium";
+                        color = "orange";
+                        break;
+                    case 4:
+                        strength = "password strength: Strong";
+                        color = "green";
+                        break;
+                }
+                document.getElementById("msg").innerHTML = strength;
+                document.getElementById("msg").style.color = color;
+            }
+            
+            
+            
+    // </script>
+</body>
+</html>
